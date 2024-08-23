@@ -1,0 +1,26 @@
+.grid-title {
+    margin-top: 0.75rem;
+    padding-inline-start: 1.25rem;
+    color: rgb(156 163 175);
+}
+
+.icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 9999px;
+    position: relative;
+}
+
+.slide-in {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+  
+  .slide-in.show {
+    opacity: 1;
+    transform: translateX(0);
+  }
