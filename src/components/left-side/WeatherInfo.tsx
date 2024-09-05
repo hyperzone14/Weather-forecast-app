@@ -15,6 +15,8 @@ const WeatherInfo: React.FC = () => {
         </p>
       </div>
       <div className="flex mt-5">
+        {" "}
+        {/*đoạn này làm chơi thôi ko bit thêm j vô á*/}
         <weaIcon.WiRainWind size={24} color="#000" />
         <p className="ms-3 text-md">Rain</p>
         <p className="ms-3 text-md">-</p>

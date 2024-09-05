@@ -3,10 +3,11 @@ import { optionType } from "../../utils/optionSelect";
 
 interface OptionsListProps {
   // create a hook for the OptionList
-  options: optionType[];
-  onOptionSelect: (option: optionType) => void;
+  options: optionType[]; // Array of optionType objects representing the options to display
+  onOptionSelect: (option: optionType) => void; // Function to handle when an option is selected
 }
 
+// Functional component for rendering a list of options
 const OptionsList: React.FC<OptionsListProps> = ({
   options,
   onOptionSelect,

@@ -1,3 +1,4 @@
+// Define the "optionType" which represents the structure for a location option
 export type optionType = {
     name: string;
     lat: number;
@@ -5,6 +6,7 @@ export type optionType = {
     country: string;
 }
 
+// Define the "forecastType" which represents the structure for weather forecast data
 export type forecastType = {
     name: string;
     country: string;
@@ -43,9 +45,10 @@ export type forecastType = {
     }]
 }
 
+// Define "tempUnit" type which restricts temperature units to either 'metric' or 'imperial'
 export type tempUnit = 'metric' | 'imperial'
 
-
+// Define the "weatherState" interface to represent the state structure for weather data
 export interface weatherState {
     location: string;
     options: optionType[];

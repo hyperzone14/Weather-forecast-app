@@ -2,13 +2,14 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../utils/storage";
 
+// Define a functional component "Degree" that accepts two props: "temp" (temperature as a number) and "unit" (temperature unit as a string)
 const Degree = ({
   temp,
   unit,
 }: {
   temp: number;
   unit: string;
-}): JSX.Element => (
+}): JSX.Element => ( // Return a JSX element that displays the temperature and the unit
   <p className="text-6xl">
     {temp}
     <sup>o</sup>
@@ -23,12 +24,11 @@ const TemperatureDisplay: React.FC = () => {
     return null;
   }
 
-  const weather = forecast.list[0].weather[0]; // Assuming you want the weather for the first forecast in the list
+  const weather = forecast.list[0].weather[0];
   const iconUrl = `http://openweathermap.org/img/wn/${weather.icon}@4x.png`;
   return (
     <>
       <div>
-        {/* <img src="/images/bg2.png" alt="Background" /> */}
         <img
           src={forecast.name === "" ? "/images/bg2.png" : iconUrl}
           alt={weather.description}

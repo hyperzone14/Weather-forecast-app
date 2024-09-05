@@ -10,7 +10,7 @@ const FeelLike = () => {
     <>
       <div className="box-border h-full w-7/12 border-0 bg-[#fff] hover:shadow-lg rounded-xl">
         <p className="grid-title">Human temperature</p>
-        <GaugeChart />
+        <GaugeChart /> {/*displaying the chart*/}
       </div>
     </>
   );

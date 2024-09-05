@@ -5,24 +5,25 @@ import { useEffect, useState } from "react";
 const WeekForecast = () => {
   const unit = useSelector((state: RootState) => state.weather.tempUnit);
   const unitTemp = unit === "metric" ? "°C" : "°F";
-  const forecast = useSelector((state: RootState) => state.weather.forecast);
-  const [showItems, setShowItems] = useState<boolean[]>([]);
+  const forecast = useSelector((state: RootState) => state.weather.forecast); // Select the forecast data from the Redux state
+  const [showItems, setShowItems] = useState<boolean[]>([]); // State to manage which forecast items are currently visible for the sliding effect
 
   useEffect(() => {
     //sliding effect
     if (forecast && forecast.list) {
-      setShowItems(new Array(forecast.list.length).fill(false));
+      setShowItems(new Array(forecast.list.length).fill(false)); // Initialize the showItems array with 'false' values for each forecast item
       forecast.list.forEach((_, index) => {
+        // Loop through the forecast items and set each one to 'true' after a delay
         setTimeout(() => {
           setShowItems((prevShowItems) => {
             const newShowItems = [...prevShowItems];
-            newShowItems[index] = true;
+            newShowItems[index] = true; // show the current item
             return newShowItems;
           });
-        }, index * 100);
+        }, index * 100); // Set a delay based on the index to stagger the appearance
       });
     }
-  }, [forecast]);
+  }, [forecast]); // Only re-run the effect when the forecast data changes
 
   if (!forecast) {
     return null;
@@ -48,10 +49,12 @@ const WeekForecast = () => {
         {displayForecasts.map((item, index) => (
           <div
             key={index}
+            // Apply dynamic classes based on the sliding effect state
             className={`box-border h-auto w-full border-0 bg-[#fff] hover:shadow-lg rounded-xl slide-in ${
               showItems[index] ? "show" : ""
             }`}
           >
+            {/* Display the forecast time, show "Now" for the current forecast */}
             <p className="text-center font-medium mt-3 text-lg">
               {index === 0
                 ? "Now"
@@ -61,6 +64,7 @@ const WeekForecast = () => {
                     hour12: false,
                   })}
             </p>
+            {/* Display the weather icon */}
             <div className="flex items-center justify-center mt-5">
               <img
                 alt={item.weather[0].description}
@@ -69,7 +73,9 @@ const WeekForecast = () => {
             </div>
             <div className="mb-4 mt-3 flex justify-center">
               <p className=" text-md">
+                {/* Round the max temperature */}
                 {Math.round(item.main.temp_max)}
+                {/* Display the temperature unit (°C or °F) */}
                 {unitTemp}
               </p>
               <p className="text-gray-400 text-md ps-5">

@@ -5,7 +5,7 @@ import VerticalProgressBar from "./VerticalProgressBar";
 
 const Humidity = () => {
   const forecast = useSelector((state: RootState) => state.weather.forecast);
-  const currentHumidity = forecast?.list[0].main.humidity
+  const currentHumidity = forecast?.list[0].main.humidity //get the humidity from the forecast
     ? forecast?.list[0].main.humidity
     : 0;
   if (!forecast) {

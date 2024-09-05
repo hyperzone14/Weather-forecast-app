@@ -5,9 +5,10 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../utils/storage";
 import { Doughnut } from "react-chartjs-2";
 
-Chart.register(ArcElement, Tooltip, Title);
+Chart.register(ArcElement, Tooltip, Title); //initialize the chart
 
 const getColor = (value: number, unit: string) => {
+  //setup the color for each range
   switch (unit) {
     case "metric":
       return value <= 20
@@ -33,7 +34,7 @@ const getColor = (value: number, unit: string) => {
 };
 
 const GaugeChart: React.FC = () => {
-  const forecast = useSelector((state: RootState) => state.weather.forecast);
+  const forecast = useSelector((state: RootState) => state.weather.forecast); //get the forecast from the redux
   const unit = useSelector((state: RootState) => state.weather.tempUnit);
   const [currentUnit, setCurrentUnit] = useState<string>(unit as string);
   //console.log(unit);
@@ -43,7 +44,7 @@ const GaugeChart: React.FC = () => {
   }, [unit]);
 
   const getLabel = (unit: string) => {
-    return unit === "metric"
+    return unit === "metric" //consider whether the unit is metric or imperial for displaying the set of temperature ranges
       ? ["0", "20", "40", "60", "80", "100"]
       : ["32", "68", "104", "140", "176", "212"];
   };

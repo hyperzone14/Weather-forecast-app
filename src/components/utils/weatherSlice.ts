@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { forecastType, optionType, weatherState, tempUnit } from './optionSelect';
 
+// Define a default forecast object to initialize the forecast state
 const defaultForecast: forecastType = {
     name: '',
     country: '',
@@ -39,6 +40,7 @@ const defaultForecast: forecastType = {
     }]
 }
 
+// Initialize the weather state with default values
 const initialState: weatherState = {
     location: '',
     options: [],
@@ -47,27 +49,37 @@ const initialState: weatherState = {
     tempUnit: 'metric'
 }
 
+// Create the weather slice with action reducers to handle state updates
 const weatherSlide = createSlice({
     name: 'weather',
-    initialState,
+    initialState, // Initial state of the weather
     reducers: {
+        // Action to set the location based on user input
         setLocation: (state, action: PayloadAction<string>) => {
-            state.location = action.payload;
+            state.location = action.payload; // Update the location string in the state
         },
+        // Action to set the available options for locations
         setOptions: (state, action: PayloadAction<optionType[]>) => {
             state.options = action.payload;
         },
+        // Action to set the selected city details
         setCity: (state, action: PayloadAction<optionType>) => {
             state.city = action.payload;
         },
+        // Action to set the weather forecast for the selected city
         setForecast: (state, action: PayloadAction<forecastType>) => {
             state.forecast = action.payload;
         },
+        // Action to set the temperature unit (metric or imperial)
         setTempUnit: (state, action: PayloadAction<tempUnit>) => {
             state.tempUnit = action.payload;
         }
     }
 })
 
+
+// Export the actions so they can be dispatched from components
 export const { setLocation, setOptions, setCity, setForecast, setTempUnit } = weatherSlide.actions;
+
+// Export the reducer to include it in the Redux store
 export default weatherSlide.reducer;
